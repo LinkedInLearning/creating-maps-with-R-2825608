@@ -1,0 +1,166 @@
+code,area,age_group,value
+E09000001,City of London,16 or under,NA
+E09000001,City of London,17-19,NA
+E09000001,City of London,20-23,NA
+E09000001,City of London,24+,NA
+E09000001,City of London,Still in education,NA
+E09000002,Barking and Dagenham,16 or under,46000
+E09000002,Barking and Dagenham,17-19,42000
+E09000002,Barking and Dagenham,20-23,31000
+E09000002,Barking and Dagenham,24+,11000
+E09000002,Barking and Dagenham,Still in education,9000
+E09000003,Barnet,16 or under,52000
+E09000003,Barnet,17-19,71000
+E09000003,Barnet,20-23,92000
+E09000003,Barnet,24+,25000
+E09000003,Barnet,Still in education,26000
+E09000004,Bexley,16 or under,54000
+E09000004,Bexley,17-19,51000
+E09000004,Bexley,20-23,38000
+E09000004,Bexley,24+,12000
+E09000004,Bexley,Still in education,11000
+E09000005,Brent,16 or under,44000
+E09000005,Brent,17-19,63000
+E09000005,Brent,20-23,69000
+E09000005,Brent,24+,22000
+E09000005,Brent,Still in education,24000
+E09000006,Bromley,16 or under,45000
+E09000006,Bromley,17-19,76000
+E09000006,Bromley,20-23,69000
+E09000006,Bromley,24+,13000
+E09000006,Bromley,Still in education,14000
+E09000007,Camden,16 or under,25000
+E09000007,Camden,17-19,33000
+E09000007,Camden,20-23,77000
+E09000007,Camden,24+,29000
+E09000007,Camden,Still in education,17000
+E09000008,Croydon,16 or under,60000
+E09000008,Croydon,17-19,71000
+E09000008,Croydon,20-23,88000
+E09000008,Croydon,24+,25000
+E09000008,Croydon,Still in education,17000
+E09000009,Ealing,16 or under,36000
+E09000009,Ealing,17-19,44000
+E09000009,Ealing,20-23,81000
+E09000009,Ealing,24+,54000
+E09000009,Ealing,Still in education,18000
+E09000010,Enfield,16 or under,55000
+E09000010,Enfield,17-19,74000
+E09000010,Enfield,20-23,57000
+E09000010,Enfield,24+,18000
+E09000010,Enfield,Still in education,20000
+E09000011,Greenwich,16 or under,50000
+E09000011,Greenwich,17-19,54000
+E09000011,Greenwich,20-23,62000
+E09000011,Greenwich,24+,20000
+E09000011,Greenwich,Still in education,13000
+E09000012,Hackney,16 or under,31000
+E09000012,Hackney,17-19,48000
+E09000012,Hackney,20-23,73000
+E09000012,Hackney,24+,26000
+E09000012,Hackney,Still in education,22000
+E09000013,Hammersmith and Fulham,16 or under,16000
+E09000013,Hammersmith and Fulham,17-19,16000
+E09000013,Hammersmith and Fulham,20-23,56000
+E09000013,Hammersmith and Fulham,24+,29000
+E09000013,Hammersmith and Fulham,Still in education,12000
+E09000014,Haringey,16 or under,39000
+E09000014,Haringey,17-19,45000
+E09000014,Haringey,20-23,75000
+E09000014,Haringey,24+,19000
+E09000014,Haringey,Still in education,23000
+E09000015,Harrow,16 or under,35000
+E09000015,Harrow,17-19,43000
+E09000015,Harrow,20-23,57000
+E09000015,Harrow,24+,15000
+E09000015,Harrow,Still in education,13000
+E09000016,Havering,16 or under,70000
+E09000016,Havering,17-19,60000
+E09000016,Havering,20-23,28000
+E09000016,Havering,24+,6000
+E09000016,Havering,Still in education,9000
+E09000017,Hillingdon,16 or under,54000
+E09000017,Hillingdon,17-19,51000
+E09000017,Hillingdon,20-23,66000
+E09000017,Hillingdon,24+,19000
+E09000017,Hillingdon,Still in education,14000
+E09000018,Hounslow,16 or under,38000
+E09000018,Hounslow,17-19,43000
+E09000018,Hounslow,20-23,71000
+E09000018,Hounslow,24+,29000
+E09000018,Hounslow,Still in education,7000
+E09000019,Islington,16 or under,23000
+E09000019,Islington,17-19,29000
+E09000019,Islington,20-23,89000
+E09000019,Islington,24+,28000
+E09000019,Islington,Still in education,15000
+E09000020,Kensington and Chelsea,16 or under,12000
+E09000020,Kensington and Chelsea,17-19,19000
+E09000020,Kensington and Chelsea,20-23,41000
+E09000020,Kensington and Chelsea,24+,23000
+E09000020,Kensington and Chelsea,Still in education,12000
+E09000021,Kingston upon Thames,16 or under,16000
+E09000021,Kingston upon Thames,17-19,27000
+E09000021,Kingston upon Thames,20-23,53000
+E09000021,Kingston upon Thames,24+,13000
+E09000021,Kingston upon Thames,Still in education,12000
+E09000022,Lambeth,16 or under,28000
+E09000022,Lambeth,17-19,53000
+E09000022,Lambeth,20-23,107000
+E09000022,Lambeth,24+,40000
+E09000022,Lambeth,Still in education,13000
+E09000023,Lewisham,16 or under,40000
+E09000023,Lewisham,17-19,60000
+E09000023,Lewisham,20-23,83000
+E09000023,Lewisham,24+,22000
+E09000023,Lewisham,Still in education,12000
+E09000024,Merton,16 or under,26000
+E09000024,Merton,17-19,37000
+E09000024,Merton,20-23,55000
+E09000024,Merton,24+,17000
+E09000024,Merton,Still in education,8000
+E09000025,Newham,16 or under,50000
+E09000025,Newham,17-19,63000
+E09000025,Newham,20-23,83000
+E09000025,Newham,24+,30000
+E09000025,Newham,Still in education,20000
+E09000026,Redbridge,16 or under,46000
+E09000026,Redbridge,17-19,53000
+E09000026,Redbridge,20-23,70000
+E09000026,Redbridge,24+,18000
+E09000026,Redbridge,Still in education,19000
+E09000027,Richmond upon Thames,16 or under,12000
+E09000027,Richmond upon Thames,17-19,23000
+E09000027,Richmond upon Thames,20-23,73000
+E09000027,Richmond upon Thames,24+,13000
+E09000027,Richmond upon Thames,Still in education,10000
+E09000028,Southwark,16 or under,34000
+E09000028,Southwark,17-19,46000
+E09000028,Southwark,20-23,101000
+E09000028,Southwark,24+,40000
+E09000028,Southwark,Still in education,15000
+E09000029,Sutton,16 or under,31000
+E09000029,Sutton,17-19,38000
+E09000029,Sutton,20-23,45000
+E09000029,Sutton,24+,15000
+E09000029,Sutton,Still in education,5000
+E09000030,Tower Hamlets,16 or under,50000
+E09000030,Tower Hamlets,17-19,48000
+E09000030,Tower Hamlets,20-23,87000
+E09000030,Tower Hamlets,24+,35000
+E09000030,Tower Hamlets,Still in education,12000
+E09000031,Waltham Forest,16 or under,48000
+E09000031,Waltham Forest,17-19,47000
+E09000031,Waltham Forest,20-23,73000
+E09000031,Waltham Forest,24+,17000
+E09000031,Waltham Forest,Still in education,7000
+E09000032,Wandsworth,16 or under,19000
+E09000032,Wandsworth,17-19,50000
+E09000032,Wandsworth,20-23,116000
+E09000032,Wandsworth,24+,38000
+E09000032,Wandsworth,Still in education,16000
+E09000033,Westminster,16 or under,16000
+E09000033,Westminster,17-19,29000
+E09000033,Westminster,20-23,78000
+E09000033,Westminster,24+,37000
+E09000033,Westminster,Still in education,17000
