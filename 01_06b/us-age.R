@@ -5,6 +5,7 @@ library(tigris)
 library(rmapshaper)
 library(readxl)
 library(tictoc)
+library(future)
 library(tidyverse)
 
 source("sf_dot_density.R")
@@ -68,8 +69,28 @@ tx_counties_sf <- counties(state = "TX",
 
 tx_counties_sf %>% 
   left_join(tx_grouped_ages_grouping_c) %>% 
-  sf_dot_density(group_var = age_grouping_c,
-                 value = total_pop)
+  mutate(value = total_pop) %>% 
+  arrange(value) %>% 
+  mutate(value = ifelse(value < 200, NA, value))
+
+tx_dot_density_age_grouping_c <- tx_counties_sf %>% 
+  left_join(tx_grouped_ages_grouping_c) %>% 
+  mutate(value = total_pop) %>% 
+  arrange(value) %>% 
+  mutate(value = ifelse(value < 200, NA, value)) %>% 
+  sf_dot_density(group_var = age_grouping_c, parallel = TRUE, scale = 200)
+toc("tx_dot_density_age_grouping_c")
+
+tx_dot_density_age_grouping_c %>% 
+  ggplot() +
+  geom_sf(aes(color = age_grouping_c),
+          size = 0.1)
+
+
+
+
+
+
 
 
 
