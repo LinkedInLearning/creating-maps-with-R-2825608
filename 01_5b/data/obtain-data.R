@@ -34,6 +34,15 @@ unlink("data/2011_london_boundaries.zip")
 
 ## ==== NYC Traffic Collisions =====
 
+# https://data.cityofnewyork.us/Business/Zip-Code-Boundaries/i8iw-xf4u/data?no_mobile=true
+
+download.file("https://data.cityofnewyork.us/download/i8iw-xf4u/application%2Fzip",
+              "data/nyc_zips.zip")
+
+unzip("data/nyc_zips.zip",
+      exdir = "data/ny-zipcodes")
+
+options(timeout=1000)
 download.file("https://data.cityofnewyork.us/api/views/h9gi-nx95/rows.csv?accessType=DOWNLOAD",
               "data/Motor_Vehicle_Collisions_-_Crashes.csv")
 
@@ -42,7 +51,7 @@ nyc_traffic_accidents_raw <- read_csv("data/Motor_Vehicle_Collisions_-_Crashes.c
 nyc_traffic_accidents_2020 <- nyc_traffic_accidents_raw %>% 
   clean_names() %>% 
   mutate(crash_date = mdy(crash_date)) %>% 
-  select(crash_date, zip_code, latitude, longitude) %>% 
+  select(crash_date, zip_code, latitude, longitude, everything()) %>% 
   filter(!is.na(latitude)) %>% 
   filter(year(crash_date) == 2020)
 
@@ -50,10 +59,3 @@ nyc_traffic_accidents_2020 %>%
   write_csv("data/nyc-traffic-accidents_2020.csv")
 
 unlink("data/Motor_Vehicle_Collisions_-_Crashes.csv")
-
-
-
-
-
-
-
