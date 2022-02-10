@@ -93,11 +93,6 @@ tx_tracts_sf <- tracts(state = "TX",
   ms_simplify() %>% 
   clean_names()
 
-tx_tracts_sf
-
-
-
-
 
 tx_counties_dot_density_age_grouping_c <- tx_counties_sf %>% 
   left_join(tx_counties_age_ranges_all) %>% 
