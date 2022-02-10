@@ -32,14 +32,17 @@ london_bikes_by_borough %>%
   filter(bike_stations_in_zip > 0) %>% 
   mapview(zcol = "bike_stations_in_zip")
 
-
-london_boroughs_with_bikes_hex_sf <- london_bikes_by_borough %>% 
+london_boroughs_hex_sf <- london_bikes_by_borough %>% 
   filter(!is.na(bike_stations_in_zip)) %>% 
   st_union() %>% 
   st_as_sf() %>% 
   make_hex_bins("honeycomb") %>% 
-  st_cast("POLYGON")%>% 
-  mutate(bike_stations_in_zip = lengths(st_covers(london_boroughs_with_bikes_hex_sf, london_bike_stations))) %>% 
+  st_cast("POLYGON")
+
+
+
+london_boroughs_with_bikes_hex_sf <- london_boroughs_hex_sf %>% 
+  mutate(bike_stations_in_zip = lengths(st_covers(london_boroughs_hex_sf, london_bike_stations))) %>% 
   mutate(bike_stations_in_zip = ifelse(bike_stations_in_zip == 0, NA_integer_, bike_stations_in_zip))
 
 bbox_boroughs_with_bikes <- as.list(st_bbox(london_boroughs_with_bikes_hex_sf))
