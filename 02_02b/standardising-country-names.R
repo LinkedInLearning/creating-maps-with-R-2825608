@@ -25,7 +25,7 @@ country_population <- read_excel("data/country-gdp.xlsx")
 
 # ==== Data visualisation Code ====
 
-pal_gdp <- colorNumeric("viridis", world_population_sf$gdp_md_est)
+pal_gdp <- colorNumeric("viridis", world_gdp$gdp_md_est)
 
 world_gdp %>% 
   leaflet() %>% 
