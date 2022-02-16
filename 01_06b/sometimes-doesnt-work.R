@@ -47,9 +47,6 @@ tx_tracts_sex_by_age <- get_acs("tract",
   clean_names()
 
 
-all_tracts_sex_by_age %>% 
-  mapview()
-
 all_counties_sex_by_age_tidy <- all_counties_sex_by_age %>% 
   separate(name,
            into = c("county", "state"),
@@ -108,7 +105,6 @@ tx_tracts_dot_density_age_grouping_c <- tx_tracts_sf %>%
   arrange(value) %>% 
   select(age_grouping_c, value) %>% 
   sf_dot_density(group_var = age_grouping_c, parallel = TRUE, scale = 50)
-
 
 
 fct_ordering_age_group_c <- acs_age_groupings %>% 
