@@ -27,7 +27,7 @@ country_population <- read_excel("data/country-gdp.xlsx")
 
 pal_gdp <- colorNumeric("viridis", world_population_sf$gdp_md_est)
 
-world_population_sf %>% 
+world_gdp %>% 
   leaflet() %>% 
   addPolygons(fillColor = ~pal_gdp(gdp_md_est),
               color = "white",
