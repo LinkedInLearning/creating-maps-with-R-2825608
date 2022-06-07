@@ -1,0 +1,50 @@
+library(tidyverse)
+library(sf)
+library(maps)
+library(leaflet)
+library(rnaturalearthdata)
+
+brazil_sf <- countries110 %>% 
+  st_as_sf() %>% 
+  filter(name == "Brazil")
+
+brazil_cities <- world.cities %>% 
+  filter(country.etc == "Brazil",
+         pop >= 1E6) %>% 
+  st_as_sf(coords = c("long", "lat"), crs = 4326) %>% 
+  arrange(desc(pop)) %>% 
+  mutate(city_type = ifelse(capital == 1, "Capital City", "City"))
+
+city_type_pal <- colorFactor(c("Gold", "Purple"), brazil_cities$city_type)
+
+city_label <- function(city_name, population){
+  
+  paste("<b>City:</b>", city_name, 
+        "<br>",
+        "<b>Population:</b>", scales::number(population,
+                                             big.mark = ","))
+  
+}
+
+leaflet() %>% 
+  addPolygons(data = brazil_sf,
+              fillColor = "darkolivegreen",
+              fillOpacity = 1,
+              color = "black",
+              weight = 1
+  ) %>% 
+  addCircleMarkers(data = brazil_cities,
+                   weight = 1,
+                   color = "black",
+                   fillColor = ~city_type_pal(city_type),
+                   fillOpacity = 1,
+                   radius = ~scales::rescale(sqrt(pop), c(5, 20)),
+                   popup = ~city_label(name, pop),
+                   label = ~name) %>% 
+  addLegend(pal = city_type_pal,
+            data = brazil_cities,
+            values = ~city_type,
+            title = NA,
+            opacity = 1)
+
+
