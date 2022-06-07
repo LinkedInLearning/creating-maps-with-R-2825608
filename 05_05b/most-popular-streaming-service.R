@@ -15,6 +15,7 @@ us_contiguous <- states() %>%
          !statefp %in% c(2, 15)) %>% 
   ms_simplify()
 
+
 us_most_popular_streaming_service <- us_contiguous %>% 
   left_join(most_popular_streaming_service,
             by = c("name" = "state"))
@@ -26,3 +27,8 @@ colors_services <- c(
   "Netflix" = "grey30"
 )
 
+leaflet() %>% 
+  addPolygons(data = us_most_popular_streaming_service,
+              weight = 1,
+              color = "black",
+              label = ~name)
