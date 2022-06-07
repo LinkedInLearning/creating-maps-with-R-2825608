@@ -45,5 +45,5 @@ leaflet() %>%
   addLegend(data = us_most_popular_streaming_service,
             pal = pal_streaming_service,
             values = ~streaming_service,
-            na.label = "(No data)",
-            opacity = 1)
+            opacity = 1,
+            na.label = "(No data)")
