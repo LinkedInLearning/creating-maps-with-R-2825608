@@ -26,3 +26,12 @@ south_atlantic_prisons <- south_atlantic_states %>%
 
 leaflet() %>% 
   addPolygons(data = south_atlantic_prisons)
+
+
+
+# legend fix --------------------------------------------------------------
+
+html_fix <- htmltools::tags$style(type = "text/css", "div.info.legend.leaflet-control br {clear: both;}") 
+
+lf_map %>% 
+  htmlwidgets::prependContent(html_fix)
