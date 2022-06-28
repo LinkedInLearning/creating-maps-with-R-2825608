@@ -20,7 +20,7 @@ us_most_popular_pets <- us_contiguous %>%
             by = c("name" = "state"))
 
 colors_pets <-
-  list(
+  c(
     "Hamster" = "#AE76A6",
     "Guinea pig" = "#92BFB1",
     "Chinchilla" = "#694A38",
