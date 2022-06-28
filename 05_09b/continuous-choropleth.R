@@ -23,3 +23,10 @@ us_coastline <- us_states %>%
 leaflet() %>% 
   addPolygons(data = us_coastline)
 
+# legend placement fix ----------------------------------------------------
+
+css_fix <- "div.info.legend.leaflet-control br {clear: both;}" # CSS to correct spacing
+html_fix <- htmltools::tags$style(type = "text/css", css_fix) 
+
+lf_coastline %>% 
+  htmlwidgets::prependContent(html_fix)
