@@ -21,11 +21,11 @@ us_most_popular_pets <- us_contiguous %>%
 
 colors_pets <-
   c(
-    "Hamster" = "#AE76A6",
-    "Guinea pig" = "#92BFB1",
-    "Chinchilla" = "#694A38",
-    "Sugar glider" = "#A61C3C",
-    "Bearded dragon" = "#FFAD05"
+    "Hamster" = "darkorchid1",
+    "Guinea pig" = "darkcyan",
+    "Chinchilla" = "chocolate",
+    "Sugar glider" = "darkred",
+    "Bearded dragon" = "gold"
   )
 
 leaflet() %>% 
