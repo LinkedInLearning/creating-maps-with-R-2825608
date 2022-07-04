@@ -18,15 +18,16 @@ world_gdp <- world_sf %>%
 
 
 
+
 # ==== Standardise country names ====
 
-countrycode("Commonwealth of Australia", origin = "country.name", destination = "iso3c")
-
-country_population_tidy <- country_population %>% 
-  mutate(iso_a3 = countrycode(country_name, origin = "country.name", destination = "iso3c"))
+country_population <- country_population %>% 
+  mutate(iso_a3 = countrycode(country_name, "country.name", "iso3c"))
 
 world_gdp <- world_sf %>% 
-  left_join(country_population_tidy)
+  left_join(country_population,
+            by = c("iso_a3" = "iso_a3"))
+
 
 # ==== Data visualisation Code ====
 
