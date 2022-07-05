@@ -12,4 +12,4 @@ country_population <- read_csv("data/country-population.csv")
 
 
 world_pop %>% 
-  mapview(zcol = "continent")
+  mapview(zcol = "continent_population")
