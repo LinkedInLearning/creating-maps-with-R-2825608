@@ -13,7 +13,6 @@ brazil_cities <- world.cities %>%
   st_as_sf(coords = c("long", "lat"), crs = 4326) %>% 
   arrange(desc(pop))
 
-
 ggplot() +
   geom_sf(data = brazil_sf,
           fill = "darkolivegreen3") +
