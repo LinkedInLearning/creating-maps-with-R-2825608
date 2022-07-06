@@ -9,3 +9,4 @@ london_school_leavers_sf <- london_sf %>%
   left_join(education_data,
             by = c("lad11nm" = "area")) %>% 
   filter(age_group == "16 or under")
+
