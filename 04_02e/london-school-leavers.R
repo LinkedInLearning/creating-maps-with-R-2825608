@@ -20,7 +20,7 @@ ggplot() +
                        name = "School leavers\n16 or under",
                        na.value = "pink") +
   guides(shape = guide_legend(override.aes = list(fill = "pink"),
-                              title = NULL)) +
-  labs(title = "Central London residents are less likely to leave school at 16") +
+                              title = NULL,
+                              order = 2),
+         fill = guide_colorbar(order = 1)) +
   theme_void()
-
