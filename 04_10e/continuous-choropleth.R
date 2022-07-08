@@ -22,14 +22,12 @@ us_coastline <- us_states %>%
 ggplot() +
   geom_sf(data = us_coastline,
           aes(fill = km_of_coastline,
-              shape = "Zero coastline"),
-          color = "white",
-          size = 0.2) +
-  scale_fill_viridis_c(name = "Coastline (km)",
-                       labels = scales::number_format(big.mark = ","),
-                       na.value = "pink"
-  ) +
+              shape = "Zero km\nof coastline")) +
+  scale_fill_viridis_c(labels = scales::number_format(big.mark = ","),
+                       na.value = "pink") +
   guides(shape = guide_legend(override.aes = list(fill = "pink"),
-                              title = NULL)) +
+                              title = NULL,
+                              order = 2),
+         fill = guide_colorbar(order = 1)) +
   theme_void()
 
