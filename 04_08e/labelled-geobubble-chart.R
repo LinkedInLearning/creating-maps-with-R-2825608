@@ -10,38 +10,32 @@ germany_sf <- countries50 %>%
 
 germany_cities <- world.cities %>% 
   filter(country.etc == "Germany") %>% 
-  slice_max(pop, n = 5)
-
-germany_cities_sf <- germany_cities %>% 
+  slice_max(pop, n = 5) %>% 
   st_as_sf(coords = c("long", "lat"),
            crs = 4326)
 
-germany_cities_to_label <- germany_cities %>% 
-  arrange(pop) %>% 
-  slice(1, n())
+germany_cities_df <- germany_cities %>% 
+  st_drop_geometry() %>% 
+  bind_cols(st_coordinates(germany_cities)) %>% 
+  slice(c(1, n()))
 
 ggplot() +
   geom_sf(data = germany_sf,
           fill = "darkolivegreen3") +
-  geom_sf(data = germany_cities_sf,
+  geom_sf(data = germany_cities,
           aes(size = pop,
               fill = as.logical(capital)),
           shape = 21) +
+  geom_label_repel(data = germany_cities_df,
+                   aes(x = X,
+                       y = Y,
+                       label = name)) +
+  scale_size_area(labels = scales::number_format(scale = 1E-6,
+                                                 suffix = " Million")) +
   scale_fill_manual(values = c("TRUE" = "gold",
-                               "FALSE" = "purple"),
-                    labels = c("TRUE" = "Capital City",
-                               "FALSE" = "City"),
-                    name = "") +
-  geom_label_repel(data = germany_cities_to_label,
-                   aes(x = long,
-                       y = lat,
-                       label = name,
-                       point.size = scales::rescale(pop, c(1, 10)))) +
-  scale_size_area(max_size = 10,
-                  labels = scales::number_format(scale = 1E-6,
-                                                 suffix = " Million"),
-                  name = "") +
-  guides(fill = guide_legend(override.aes = list(size = 5)),
-         size = guide_legend(override.aes = list(fill = "lightgrey"))) +
+                               "FALSE" = "purple")) +
   theme_void()
+
+
+
 
