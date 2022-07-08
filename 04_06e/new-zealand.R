@@ -17,8 +17,7 @@ new_zealand_top_10_cities_sf <- new_zealand_top_10_cities %>%
   st_as_sf(coords = c("long", "lat"), crs = 4326)
 
 ggplot() +
-  geom_sf(data = new_zealand_sf %>% 
-            ms_filter_islands(min_area = 1E8)) +
+  geom_sf(data = ms_filter_islands(new_zealand_sf, 1E8)) +
   geom_sf(data = new_zealand_top_10_cities_sf,
           aes(size = pop),
           shape = 21,
