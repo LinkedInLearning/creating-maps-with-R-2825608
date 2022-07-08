@@ -7,6 +7,11 @@ library(tigris)
 most_popular_pets <- read_csv("data/pet-searches-by-state.csv") %>% 
   clean_names()
 
+
+order_pet_popularity <- most_popular_pets %>% 
+  count(pet, sort = TRUE) %>% 
+  pull(pet)
+
 us_contiguous <- states() %>% 
   clean_names() %>% 
   mutate(statefp = as.numeric(statefp)) %>% 
@@ -27,11 +32,10 @@ colors_pets <-
     "Bearded dragon" = "#FFAD05"
   )
 
-order_pet_popularity <- most_popular_pets %>% 
-  count(pet, sort = TRUE) %>% 
-  pull(pet)
-
 colors_pets <- colors_pets[order_pet_popularity]
+
+us_most_popular_pets <- us_most_popular_pets %>% 
+  filter(!is.na(pet))
 
 ggplot() +
   geom_sf(data = us_most_popular_pets,
@@ -39,9 +43,8 @@ ggplot() +
           color = "white",
           size = 0.2) +
   scale_fill_manual(values = colors_pets,
-                    name = "") +
-  labs(title = "Most popular pets (that aren't cats or dogs) by state") +
-  theme_void() +
-  theme(legend.position = "top")
+                    name = "Most popular pet") +
+  theme_void()
+
 
 
