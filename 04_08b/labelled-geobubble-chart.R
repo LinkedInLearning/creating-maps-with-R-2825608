@@ -10,7 +10,9 @@ germany_sf <- countries50 %>%
 
 germany_cities <- world.cities %>% 
   filter(country.etc == "Germany") %>% 
-  slice_max(pop, n = 5)
+  slice_max(pop, n = 5) %>% 
+  st_as_sf(coords = c("long", "lat"),
+           crs = 4326)
 
 
 ggplot() +
