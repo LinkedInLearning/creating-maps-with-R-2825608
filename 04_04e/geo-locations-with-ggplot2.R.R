@@ -14,11 +14,10 @@ brazil_cities <- world.cities %>%
   st_as_sf(coords = c("long", "lat"), crs = 4326) %>% 
   arrange(desc(pop))
 
-
-brazil_cities_tib <- brazil_cities %>% 
+brazil_cities_df <- brazil_cities %>% 
   st_drop_geometry() %>% 
   bind_cols(st_coordinates(brazil_cities)) %>% 
-  slice(1, n())
+  slice(c(1, n()))
 
 ggplot() +
   geom_sf(data = brazil_sf,
@@ -27,7 +26,7 @@ ggplot() +
           shape = 21,
           aes(fill = as.logical(capital),
               size = pop)) +
-  geom_label_repel(data = brazil_cities_tib,
+  geom_label_repel(data = brazil_cities_df,
                    aes(x = X,
                        y = Y,
                        label = name,
