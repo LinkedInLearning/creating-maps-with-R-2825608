@@ -14,6 +14,6 @@ germany_cities <- world.cities %>%
 
 
 ggplot() +
-  geom_sf(data = brazil_sf,
+  geom_sf(data = germany_sf,
           fill = "darkolivegreen3") +
   theme_void()
