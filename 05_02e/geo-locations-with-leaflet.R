@@ -12,10 +12,12 @@ brazil_cities <- world.cities %>%
   filter(country.etc == "Brazil",
          pop >= 1E6) %>% 
   st_as_sf(coords = c("long", "lat"), crs = 4326) %>% 
-  arrange(desc(pop)) %>% 
+  arrange(desc(pop))
+
+brazil_cities <- brazil_cities %>% 
   mutate(city_type = ifelse(capital == 1, "Capital City", "City"))
 
-city_type_pal <- colorFactor(c("Gold", "Purple"), brazil_cities$city_type)
+pal_city_type <- colorFactor(c("gold", "purple"), c("Capital City", "City"))
 
 leaflet() %>% 
   addPolygons(data = brazil_sf,
@@ -26,12 +28,12 @@ leaflet() %>%
   ) %>% 
   addCircleMarkers(data = brazil_cities,
                    weight = 1,
+                   fillColor = ~pal_city_type(city_type),
                    color = "black",
-                   fillColor = ~city_type_pal(city_type),
                    fillOpacity = 1,
-                   radius = ~scales::rescale(sqrt(pop), c(5, 20))) %>% 
-  addLegend(pal = city_type_pal,
-            data = brazil_cities,
-            values = ~city_type)
-
-
+                   radius = ~scales::rescale(pop, c(1, 10)),
+                   label = ~name) %>% 
+  addLegend(data = brazil_cities,
+            pal = pal_city_type,
+            values = ~city_type,
+            opacity = 1)
