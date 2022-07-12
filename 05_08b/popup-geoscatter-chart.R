@@ -10,7 +10,9 @@ germany_sf <- countries50 %>%
 
 germany_cities <- world.cities %>% 
   filter(country.etc == "Germany") %>% 
-  slice_max(pop, n = 5)
+  slice_max(pop, n = 5) %>% 
+  st_as_sf(coords = c("long", "lat"),
+           crs = 4326)
 
 leaflet() %>% 
   addPolygons(data = germany_sf,
@@ -18,4 +20,5 @@ leaflet() %>%
               color = "black",
               fillColor = "darkolivegreen",
               fillOpacity = 1) %>% 
-  addCircleMarkers(data = germany_cities)
+  addCircleMarkers(data = germany_cities,
+                   weight = 1)
