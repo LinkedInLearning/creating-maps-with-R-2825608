@@ -17,14 +17,15 @@ brazil_cities <- world.cities %>%
 
 city_type_pal <- colorFactor(c("Gold", "Purple"), brazil_cities$city_type)
 
-city_label <- function(city_name, population){
+
+label_city_pop <- function(city_name, population){
   
   paste("<b>City:</b>", city_name, 
         "<br>",
-        "<b>Population:</b>", scales::number(population,
-                                             big.mark = ","))
+        "<b>Population:</b>", scales::number(population, big.mark = ","))
   
 }
+
 
 leaflet() %>% 
   addPolygons(data = brazil_sf,
@@ -38,9 +39,7 @@ leaflet() %>%
                    color = "black",
                    fillColor = ~city_type_pal(city_type),
                    fillOpacity = 1,
-                   radius = ~scales::rescale(sqrt(pop), c(5, 20)),
-                   popup = ~city_label(name, pop),
-                   label = ~name) %>% 
+                   popup = ~label_city_pop(name, pop)) %>% 
   addLegend(pal = city_type_pal,
             data = brazil_cities,
             values = ~city_type,
