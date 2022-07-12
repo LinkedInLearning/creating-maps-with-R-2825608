@@ -18,10 +18,9 @@ brazil_cities <- world.cities %>%
 city_type_pal <- colorFactor(c("Gold", "Purple"), brazil_cities$city_type)
 
 leaflet() %>% 
-  addProviderTiles(providers$HERE.satelliteDay) %>% 
   addPolygons(data = brazil_sf,
               fillColor = "darkolivegreen",
-              fillOpacity = 0,
+              fillOpacity = 1,
               color = "black",
               weight = 2,
               opacity = 1
