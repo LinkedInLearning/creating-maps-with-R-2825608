@@ -12,19 +12,25 @@ london_school_leavers_sf <- london_sf %>%
   filter(age_group == "16 or under") %>% 
   st_transform(crs = 4326)
 
-school_leavers_pal <- colorBin("viridis", london_school_leavers_sf$value, na.color = "pink")
+
+pal_school_leavers <- colorBin("viridis", london_school_leavers_sf$value, 
+                               na.color = "pink")
+
 
 lf_london_school_leavers <- leaflet() %>% 
   addPolygons(data = london_school_leavers_sf,
-              color = "black",
               weight = 1,
-              fillColor = ~school_leavers_pal(value),
+              color = "black",
+              fillColor = ~pal_school_leavers(value),
               fillOpacity = 1) %>% 
   addLegend(data = london_school_leavers_sf,
-            pal = school_leavers_pal,
+            pal = pal_school_leavers,
             values = ~value,
             opacity = 1,
+            title = "School leavers 16 or under",
             na.label = "City of London")
+
+
 
 # legend fix --------------------------------------------------------------
 
