@@ -5,13 +5,13 @@ library(rmapshaper)
 library(tigris)
 library(leaflet)
 
-most_popular_streaming_service <- read_csv("data/most-popular-streaming-service.csv") %>% 
+most_popular_pets <- read_csv("data/pet-searches-by-state.csv") %>% 
   clean_names()
 
-order_streaming_service <- most_popular_streaming_service %>% 
-  count(streaming_service, sort = TRUE) %>% 
-  pull(streaming_service)
 
+order_popular_pets <- most_popular_pets %>% 
+  count(pet, sort = TRUE) %>% 
+  pull(pet)
 
 us_contiguous <- states() %>% 
   clean_names() %>% 
@@ -20,30 +20,34 @@ us_contiguous <- states() %>%
          !statefp %in% c(2, 15)) %>% 
   ms_simplify()
 
-us_most_popular_streaming_service <- us_contiguous %>% 
-  left_join(most_popular_streaming_service,
+us_most_popular_pets <- us_contiguous %>% 
+  left_join(most_popular_pets,
             by = c("name" = "state")) %>% 
-  mutate(streaming_service = fct_relevel(streaming_service, order_streaming_service))
+  mutate(pet = fct_relevel(pet, order_popular_pets))
 
-colors_services <- c(
-  "Amazon Prime" = "#2A96D9",
-  "ESPN" = "#cc5445",
-  "Hulu" = "#35B12E",
-  "Netflix" = "grey30"
-)
+colors_pets <-
+  c(
+    "Hamster" = "darkorchid1",
+    "Guinea pig" = "darkcyan",
+    "Chinchilla" = "chocolate",
+    "Sugar glider" = "darkred",
+    "Bearded dragon" = "gold"
+  )
 
-pal_streaming_service <- colorFactor(colors_services[order_streaming_service], us_most_popular_streaming_service$streaming_service, na.color = "pink")
+colors_pets <- colors_pets[order_popular_pets]
+
+pal_popular_pet <- colorFactor(colors_pets, us_most_popular_pets$pet,
+                               na.color = "darkblue")
 
 
 leaflet() %>% 
-  addPolygons(data = us_most_popular_streaming_service,
-              weight = 1,
-              color = "black",
+  addPolygons(data = us_most_popular_pets,
               label = ~name,
-              fillColor = ~pal_streaming_service(streaming_service),
+              weight = 1,
+              fillColor = ~pal_popular_pet(pet),
               fillOpacity = 1) %>% 
-  addLegend(data = us_most_popular_streaming_service,
-            pal = pal_streaming_service,
-            values = ~streaming_service,
+  addLegend(data = us_most_popular_pets,
+            pal = pal_popular_pet,
+            values = ~pet,
             opacity = 1,
-            na.label = "(No data)")
+            na.label = "Data not recorded")
