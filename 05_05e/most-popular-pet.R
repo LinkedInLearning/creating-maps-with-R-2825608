@@ -8,10 +8,10 @@ library(leaflet)
 most_popular_pets <- read_csv("data/pet-searches-by-state.csv") %>% 
   clean_names()
 
-order_pets <- most_popular_pets %>% 
+
+order_popular_pets <- most_popular_pets %>% 
   count(pet, sort = TRUE) %>% 
   pull(pet)
-
 
 us_contiguous <- states() %>% 
   clean_names() %>% 
@@ -23,7 +23,7 @@ us_contiguous <- states() %>%
 us_most_popular_pets <- us_contiguous %>% 
   left_join(most_popular_pets,
             by = c("name" = "state")) %>% 
-  mutate(pet = fct_relevel(pet, order_pets))
+  mutate(pet = fct_relevel(pet, order_popular_pets))
 
 colors_pets <-
   c(
@@ -34,19 +34,20 @@ colors_pets <-
     "Bearded dragon" = "gold"
   )
 
-pal_pets <- colorFactor(colors_pets[order_pets], us_most_popular_pets$pet,
-                        na.color = "pink")
+colors_pets <- colors_pets[order_popular_pets]
+
+pal_popular_pet <- colorFactor(colors_pets, us_most_popular_pets$pet,
+                               na.color = "darkblue")
+
 
 leaflet() %>% 
   addPolygons(data = us_most_popular_pets,
               label = ~name,
               weight = 1,
-              color = "black",
-              fillColor = ~pal_pets(pet),
-              fillOpacity = 1
-  ) %>% 
+              fillColor = ~pal_popular_pet(pet),
+              fillOpacity = 1) %>% 
   addLegend(data = us_most_popular_pets,
-            pal = pal_pets,
+            pal = pal_popular_pet,
             values = ~pet,
-            na.label = "Washington DC")
-
+            opacity = 1,
+            na.label = "Data not recorded")
