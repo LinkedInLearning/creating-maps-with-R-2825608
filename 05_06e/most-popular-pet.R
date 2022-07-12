@@ -4,6 +4,7 @@ library(janitor)
 library(rmapshaper)
 library(tigris)
 library(leaflet)
+library(leaflet.extras)
 
 most_popular_pets <- read_csv("data/pet-searches-by-state.csv") %>% 
   clean_names()
@@ -50,4 +51,5 @@ leaflet() %>%
             pal = pal_popular_pet,
             values = ~pet,
             opacity = 1,
-            na.label = "Data not recorded")
+            na.label = "Data not recorded") %>% 
+  setMapWidgetStyle(style = list(background = "white"))
