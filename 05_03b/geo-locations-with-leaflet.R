@@ -28,8 +28,7 @@ leaflet() %>%
                    weight = 1,
                    color = "black",
                    fillColor = ~city_type_pal(city_type),
-                   fillOpacity = 1,
-                   radius = ~scales::rescale(sqrt(pop), c(5, 20))) %>% 
+                   fillOpacity = 1) %>% 
   addLegend(pal = city_type_pal,
             data = brazil_cities,
             values = ~city_type,
