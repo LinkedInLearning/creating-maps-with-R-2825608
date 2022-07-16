@@ -5,3 +5,11 @@ library(sf)
 oceania_sf <- countries110 %>% 
   st_as_sf() %>% 
   filter(name %in% c("Australia", "New Zealand"))
+
+quakes_4326 <- quakes %>% 
+  st_as_sf(coords = c("long", "lat"),
+           crs = 4326)
+
+ggplot() +
+  geom_sf(data = oceania_sf) +
+  geom_sf(data = quakes_4326)
