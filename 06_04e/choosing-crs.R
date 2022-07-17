@@ -10,28 +10,28 @@ quakes_4326 <- quakes %>%
   st_as_sf(coords = c("long", "lat"),
            crs = 4326)
 
-ggplot() +
-  geom_sf(data = oceania_sf) +
-  geom_sf(data = quakes_4326)
 
 quakes_4326 %>% 
-  st_transform(crs = 7844)
+  st_transform(crs = 4959)
 
-crs_quakes <- 'PROJCS["quales-dataset_Equidistant_Conic",
- GEOGCS["GCS_WGS_1984",
-  DATUM["D_WGS_1984",
-   SPHEROID["WGS_1984",6378137.0,298.257223563]],
-  PRIMEM["Greenwich",0.0],
-  UNIT["Degree",0.0174532925199433]],
- PROJECTION["Equidistant_Conic"],
- PARAMETER["False_Easting",0.0],
- PARAMETER["False_Northing",0.0],
- PARAMETER["Central_Meridian",146.25],
- PARAMETER["Standard_Parallel_1",-40.2354813],
- PARAMETER["Standard_Parallel_2",-7.3439988],
- PARAMETER["Latitude_Of_Origin",-23.78974],
- UNIT["Meter",1.0]]'
+crs_quakes <- 'PROJCS["ProjWiz_Custom_Albers",
+                     GEOGCS["GCS_WGS_1984",
+                            DATUM["D_WGS_1984",
+                                  SPHEROID["WGS_1984",6378137.0,298.257223563]],
+                            PRIMEM["Greenwich",0.0],
+                            UNIT["Degree",0.0174532925199433]],
+                     PROJECTION["Albers"],
+                     PARAMETER["False_Easting",0.0],
+                     PARAMETER["False_Northing",0.0],
+                     PARAMETER["Central_Meridian",153.3691406],
+                     PARAMETER["Standard_Parallel_1",-40.9315112],
+                     PARAMETER["Standard_Parallel_2",-8.0456775],
+                     PARAMETER["Latitude_Of_Origin",-24.4885943],
+                     UNIT["Meter",1.0]]'
 
 quakes_4326 %>% 
   st_transform(crs = crs_quakes)
 
+ggplot() +
+  geom_sf(data = oceania_sf) +
+  geom_sf(data = quakes_4326)
