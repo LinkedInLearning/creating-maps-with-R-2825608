@@ -10,23 +10,27 @@ world_sf <- read_sf("data/world-shapefiles")
 
 country_population <- read_excel("data/country-gdp.xlsx")
 
+country_population <- country_population %>% 
+  mutate(iso_a3 = countrycode(country_name,
+                              "country.name",
+                              "iso3c"))
+
+
 # ==== Join ====
 
 world_gdp <- world_sf %>% 
   left_join(country_population,
-            by = c("name" = "country_name"))
-
+            by = c("iso_a3" = "iso_a3"))
 
 
 
 # ==== Standardise country names ====
 
-country_population <- country_population %>% 
-  mutate(iso_a3 = countrycode(country_name, "country.name", "iso3c"))
 
-world_gdp <- world_sf %>% 
-  left_join(country_population,
-            by = c("iso_a3" = "iso_a3"))
+countrycode("Commonwealth of Australia",
+            "country.name",
+            "iso3c")
+
 
 
 # ==== Data visualisation Code ====
