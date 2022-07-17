@@ -13,17 +13,20 @@ germany_cities <- world.cities %>%
   filter(country.etc == "Germany") %>% 
   slice_max(pop, n = 5) %>% 
   st_as_sf(coords = c("long", "lat"),
-           crs = 4326) %>% 
+           crs = 4326)
+
+
+germany_cities <- germany_cities %>% 
   mutate(city_type = ifelse(capital == 1, "Capital City", "City"))
 
 pal_city_type <- colorFactor(c("gold", "purple"), c("Capital City", "City"))
 
-popup_city_population <- function(city_name, population){
+popup_city_pop <- function(city, population){
   
   paste(
-    "<b>City:</b>", city_name,
+    "<b>City:</b>", city,
     "<br>",
-    "<b>Poppulation:</b>", population
+    "<b>Population:</b>", scales::number(population, big.mark = ",")
   )
   
 }
@@ -38,13 +41,9 @@ leaflet() %>%
                    weight = 1,
                    fillColor = ~pal_city_type(city_type),
                    fillOpacity = 1,
-                   popup = ~popup_city_population(name, pop)) %>% 
+                   popup = ~popup_city_pop(name, pop)) %>% 
   addLegend(data = germany_cities,
             pal = pal_city_type,
             values = ~city_type,
             opacity = 1) %>% 
   setMapWidgetStyle(style = list(background = "white"))
-
-
-
-
